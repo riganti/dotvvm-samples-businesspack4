@@ -39,8 +39,8 @@ namespace BPSamples.CustomProperties
             options.AddDefaultTempStorages("temp");
             options.AddHotReload();
 
-            //options.AddBusinessPack(theme: BusinessPackTheme.Enterprise);
-            options.AddBusinessPack(theme: BusinessPackTheme.Bootstrap4);
+            options.AddBusinessPack(theme: BusinessPackTheme.Enterprise);
+            //options.AddBusinessPack(theme: BusinessPackTheme.Bootstrap4);
         }
     }
 }
