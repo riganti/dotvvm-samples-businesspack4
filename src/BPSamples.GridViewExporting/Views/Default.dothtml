@@ -1,0 +1,39 @@
+﻿@viewModel BPSamples.GridViewExporting.ViewModels.DefaultViewModel, BPSamples.GridViewExporting
+@masterPage Views/MasterPage.dotmaster
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h2>Time tracking report</h2>
+
+    <div class="toolbar">
+        <bp:Button Text="Export" Click="{command: Export()}" />
+    </div>
+
+    <bp:GridView DataSource="{value: Entries}" ID="grid">
+        <Columns>
+            <bp:GridViewTextColumn Value="{value: BeginDate}" HeaderText="Date" FormatString="d"
+                                   ColumnName="Date"/>
+
+            <bp:GridViewTextColumn Value="{value: BeginDate}" HeaderText="Begin time" FormatString="t" 
+                                   ColumnName="BeginTime"/>
+
+            <bp:GridViewTextColumn Value="{value: EndDate}" HeaderText="End time" FormatString="t" />
+
+            <bp:GridViewTemplateColumn HeaderText="Hours" ColumnName="Hours">
+                <bp:Text>{{value: $"{Hours:n1} h"}}</bp:Text>
+            </bp:GridViewTemplateColumn>
+
+            <bp:GridViewTextColumn Value="{value: EmployeeName}" HeaderText="Employee" />
+
+            <bp:GridViewTextColumn Value="{value: Description}" HeaderText="Work description" />
+
+            <bp:GridViewTemplateColumn ColumnName="EditButton">
+                <bp:Button Click="{command: null}">
+                    <bp:FAIcon Icon="PencilAltSolid" />
+                </bp:Button>
+            </bp:GridViewTemplateColumn>
+        </Columns>
+    </bp:GridView>
+
+    <bp:DataPager DataSet="{value: Entries}" />
+
+</dot:Content>

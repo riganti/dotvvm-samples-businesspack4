@@ -1,0 +1,18 @@
+﻿@viewModel BPSamples.Chat.ViewModels.DefaultViewModel, BPSamples.Chat
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h1>Enter your name</h1>
+
+    <form>
+        <bp:TextBox Text="{value: AuthorName}" 
+                    AutoFocus="true"
+                    BusinessPack.AllowAutoValidation="true" />
+
+        <bp:Button Text="Enter chat"
+                   IsSubmitButton="true"
+                   Click="{command: EnterChat()}" />
+    </form>
+
+</dot:Content>

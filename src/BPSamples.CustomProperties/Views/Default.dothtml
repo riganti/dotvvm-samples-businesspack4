@@ -1,0 +1,51 @@
+﻿@viewModel BPSamples.CustomProperties.ViewModels.DefaultViewModel, BPSamples.CustomProperties
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="HeadContent">
+    <dot:RequiredResource Name="bp-override-css" />
+</dot:Content>
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div>
+        <h1>DotVVM Business Pack - Custom CSS Properties</h1>
+        <bp:CheckBox Checked="{value: IsBpOverrideEnabled}"
+                     Text="{value: IsBpOverrideEnabled ? 'Override On' : 'Override Off'}" />
+    </div>
+
+    <div>
+        <bp:Button Text="Default" Type="Default" />
+        <bp:Button Text="Primary" Type="Primary" />
+        <bp:Button Text="Secondary" Type="Secondary" />
+        <bp:Button Text="Success" Type="Success" />
+        <bp:Button Text="Danger" Type="Danger" />
+        <bp:Button Text="Warning" Type="Warning" />
+        <bp:Button Text="Info" Type="Info" />
+        <bp:Button Text="Link" Type="Link" />
+    </div>
+
+    <form>
+        <fieldset>
+            <legend>BusinessPack Controls</legend>
+            <label>
+                TextBox
+                <br />
+                <bp:TextBox Text="" Type="Normal" />
+            </label>
+            <label>
+                NumericUpDown
+                <br />
+                <bp:NumericUpDown Value="{value: 5}" />
+            </label>
+            <label>
+                ComboBox
+                <br />
+                <bp:ComboBox DataSource="{value: Fruits}" SelectedValue="{value: SelectedFruit}" />
+            </label>
+            <label>
+                DatePicker
+                <br />
+                <bp:DatePicker SelectedDate="{value: DateTime.Now}" />
+            </label>
+        </fieldset>
+    </form>
+</dot:Content>

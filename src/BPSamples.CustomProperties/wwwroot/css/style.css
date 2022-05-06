@@ -1,0 +1,48 @@
+﻿/*Default styles*/
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1em;
+}
+
+div:not([class]) {
+  margin-bottom: 2rem;
+}
+
+form {
+  display: inline-block;
+}
+form fieldset {
+  display: grid;
+  gap: 1em;
+  border-radius: var(--bp-border-radius);
+  border-color: var(--bp-border-color);
+}
+form label {
+  display: block;
+}
+
+/*Overriden styles*/
+body.bp-override {
+  --bp-color_primary: turquoise;
+  --bp-color_primary-hover: #2adccb;
+  --bp-color_primary-accent: #21ccbb;
+  --bp-color_secondary: violet;
+  --bp-color_secondary-hover: #eb6ceb;
+  --bp-color_success: lime;
+  --bp-color_success-hover: #00e600;
+  --bp-color_danger: orangered;
+  --bp-color_danger-hover: #e63e00;
+  --bp-color_warning: orange;
+  --bp-color_warning-hover: #e69500;
+  --bp-color_info: skyblue;
+  --bp-color_info-hover: #71c5e7;
+  --bp-padding-vertical: .5rem;
+  --bp-padding-horizontal_large: 1rem;
+  --bp-border-width: .15em;
+  --bp-border-color: var(--bp-color_primary);
+  --bp-border-radius: .5em;
+  /*Control specific*/
+}
+body.bp-override .dotvvm-bp-button {
+  --bp-border-radius: 9999px;
+}

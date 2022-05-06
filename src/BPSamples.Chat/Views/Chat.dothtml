@@ -1,0 +1,45 @@
+﻿@viewModel BPSamples.Chat.ViewModels.ChatViewModel, BPSamples.Chat
+@masterPage Views/MasterPage.dotmaster
+@import BPSamples.Chat.Models
+@service chatService = BPSamples.Chat.Services.ChatService
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <bp:MessagingConnection ServiceUrl="/hubs/chat" IsConnected="{value: IsConnected}">
+        <bp:MessageHandler MethodName="chatMessage"
+                           Command="{staticCommand: (ChatMessage msg) => Messages.Add(msg)}" />
+    </bp:MessagingConnection>
+
+    <bp:Alert Type="Danger" Visible="{value: !IsConnected}" Text="You are not connected!" />
+    <bp:Alert Type="Success" Visible="{value: IsConnected}" Text="You are connected to the chat!" />
+
+    <div class="messages">
+        <dot:Repeater DataSource="{value: Messages}">
+            <div class="message"
+                 class-mine="{value: Author == _root.AuthorName}">
+                <div class="time">
+                    {{value: CreatedDate.ToBrowserLocalTime().ToString("g")}}
+                </div>
+                <div class="author">
+                    {{value: Author}}
+                </div>
+                <div class="break"></div>
+                <div class="text">
+                    {{value: Message}}
+                </div>
+            </div>
+        </dot:Repeater>
+    </div>
+
+    <form class="new-message">
+        <bp:TextBox Text="{value: NewMessageText}" AutoFocus="true" />
+        <bp:Button IsSubmitButton="true"
+                   Click="{staticCommand: chatService.SendMessage(NewMessageText, AuthorName); NewMessageText = ""}">
+            <bp:FAIcon Icon="PaperPlaneSolid" />
+        </bp:Button>
+    </form>
+
+    <dot:RequiredResource Name="site-css" />
+
+</dot:Content>
+

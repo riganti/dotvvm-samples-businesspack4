@@ -1,0 +1,55 @@
+﻿/*Default styles*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1em;
+}
+
+div:not([class]) {
+    margin-bottom: 2rem;
+}
+
+form {
+    display: inline-block;
+
+    fieldset {
+        display: grid;
+        gap: 1em;
+        border-radius: var(--bp-border-radius);
+        border-color: var(--bp-border-color);
+    }
+
+    label {
+        display: block;
+    }
+}
+
+
+/*Overriden styles*/
+body.bp-override {
+    --bp-color_primary: turquoise;
+    --bp-color_primary-hover: #{darken(turquoise, 5%)};
+    --bp-color_primary-accent: #{darken(turquoise, 10%)};
+    --bp-color_secondary: violet;
+    --bp-color_secondary-hover: #{darken(violet, 5%)};
+    --bp-color_success: lime;
+    --bp-color_success-hover: #{darken(lime, 5%)};
+    --bp-color_danger: orangered;
+    --bp-color_danger-hover: #{darken(orangered, 5%)};
+    --bp-color_warning: orange;
+    --bp-color_warning-hover: #{darken(orange, 5%)};
+    --bp-color_info: skyblue;
+    --bp-color_info-hover: #{darken(skyblue, 5%)};
+
+    --bp-padding-vertical: .5rem;
+    --bp-padding-horizontal_large: 1rem;
+
+    --bp-border-width: .15em;
+    --bp-border-color: var(--bp-color_primary);
+    --bp-border-radius: .5em;
+
+    /*Control specific*/
+    .dotvvm-bp-button {
+        --bp-border-radius: 9999px;
+    }
+}
+

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="**/*.dothtml;**/*.dotmaster;**/*.dotcontrol" Exclude="obj/**/*.*;bin/**/*.*" CopyToPublishDirectory="Always" />
+    <None Remove="**/*.dothtml;**/*.dotmaster;**/*.dotcontrol" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="C:\Users\tomasherceg2\.nuget\packages\dotvvm.businesspack.messaging\4.0.0-preview08-final\contentFiles\any\netcoreapp3.1\package-lock.json" />
+    <Content Remove="C:\Users\tomasherceg2\.nuget\packages\dotvvm.businesspack.messaging\4.0.0-preview08-final\contentFiles\any\netcoreapp3.1\package.json" />
+    <Content Remove="C:\Users\tomasherceg2\.nuget\packages\dotvvm.businesspack.messaging\4.0.0-preview08-final\contentFiles\any\netcoreapp3.1\tsconfig.jest.json" />
+    <Content Remove="C:\Users\tomasherceg2\.nuget\packages\dotvvm.businesspack.messaging\4.0.0-preview08-final\contentFiles\any\netcoreapp3.1\tsconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dotvvm_serialized_config.json.tmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotVVM.AspNetCore" Version="4.0.3" />
+    <PackageReference Include="DotVVM.BusinessPack" Version="4.0.1" />
+    <PackageReference Include="DotVVM.BusinessPack.Messaging" Version="4.0.1" />
+    <PackageReference Include="DotVVM.HotReload.AspNetCore" Version="4.0.3" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Hubs\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+</Project>
