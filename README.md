@@ -1,13 +1,13 @@
 ![Screenshot](https://raw.githubusercontent.com/riganti/dotvvm-samples-businesspack4/master/images/bp001.png)
 
-## DotVVM Business Pack 4 enhancements
+# DotVVM Business Pack 4 enhancements
 
 This sample shows some new features introduced in [DotVVM Business Pack 4.0](https://www.dotvvm.com/products/dotvvm-business-pack). 
 
-### Prerequisites
+## Prerequisites
 * Make sure you have installed [DotVVM for Visual Studio](https://www.dotvvm.com/install)
 
-### How to run the sample
+## How to run the sample
 
 1. [Open the GitHub repo in Visual Studio](git-client://clone/?repo=https%3A%2F%2Fgithub.com%2Friganti%2Fdotvvm-samples-businesspack4)
 or 
@@ -23,7 +23,7 @@ or
 ![Open the NuGet Package Manager menu](https://raw.githubusercontent.com/riganti/dotvvm-samples-businesspack4/master/images/bp003_2.png)
 
 
-### Sample 1: Customize Business Pack theme using CSS variables
+## Sample 1: Customize Business Pack theme using CSS variables
 
 1. Right-click the `BPSamples.CustomProperties` project and select **View > View in Browser**
 ![View BPSamples.CustomProperties in Browser](https://raw.githubusercontent.com/riganti/dotvvm-samples-businesspack4/master/images/bp004.png)
@@ -37,7 +37,7 @@ You can find the overriden styles in the `src\BPSamples.CustomProperties\wwwroot
 
 ![Default and overriden look of the application with the Bootstrap4 theme](https://raw.githubusercontent.com/riganti/dotvvm-samples-businesspack4/master/images/bp006.png)
 
-### Sample 2: Customize Excel exports from the GridView 
+## Sample 2: Customize Excel exports from the GridView 
 
 1. Right-click the `BPSamples.GridViewExporting` project and select **View > View in Browser**
 ![View BPSamples.GridViewExporting in Browser](https://raw.githubusercontent.com/riganti/dotvvm-samples-businesspack4/master/images/bp007.png)
@@ -48,7 +48,7 @@ You can find the configuration of the export in `src\BPSamples.GridViewExporting
 ![Exported Excel file](https://raw.githubusercontent.com/riganti/dotvvm-samples-businesspack4/master/images/bp008.png)
 
 
-### Sample 3: Using the new DotVVM.BusinessPack.Messaging package
+## Sample 3: Using the new DotVVM.BusinessPack.Messaging package
 
 1. Right-click the `BPSamples.Chat` project and select **View > View in Browser**
 ![View BPSamples.Chat in Browser](https://raw.githubusercontent.com/riganti/dotvvm-samples-businesspack4/master/images/bp009.png)
@@ -63,7 +63,7 @@ You can find the configuration of the export in `src\BPSamples.GridViewExporting
 
 
 
-### What you can learn in the sample
+## What you can learn in the sample
 
 * Using CSS variables to override DotVVM Business Pack look & feel
 * How to customize Excel exports in GridView
