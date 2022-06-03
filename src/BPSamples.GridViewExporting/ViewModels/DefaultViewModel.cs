@@ -67,6 +67,14 @@ namespace BPSamples.GridViewExporting.ViewModels
                 .WithColumnValueProvider("Hours", (control, column, entry) => Math.Round(entry.Hours, 1))
                 .ForColumn("EditButton",
                     c => c.WithIgnore())
+                .ForColumn(c => c.Hours, c => c.WithRule(onCellExporting: (cell, value) =>
+                {
+                    // highlight cells with less than 1 hours
+                    if ((double)value.Value < 1)
+                    {
+                        cell.Style.Fill.BackgroundColor = XLColor.Yellow;
+                    }
+                }))
                 .WithRule(onDataExported: (worksheet, _) =>
                 {
                     var cell = worksheet.Cell(1, 1);
