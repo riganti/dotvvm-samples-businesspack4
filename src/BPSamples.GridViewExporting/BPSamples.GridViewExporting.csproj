@@ -11,13 +11,24 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="DotVVM.AspNetCore" Version="4.0.3" />
-    <PackageReference Include="DotVVM.BusinessPack" Version="4.0.1" />
-    <PackageReference Include="DotVVM.BusinessPack.Export.Excel" Version="4.0.1" />
-    <PackageReference Include="DotVVM.HotReload.AspNetCore" Version="4.0.3" />
+    <PackageReference Include="DotVVM.AspNetCore" Version="4.1.0-preview19-final" />
+    <PackageReference Include="DotVVM.BusinessPack" Version="4.1.0-preview18-final" />
+    <PackageReference Include="DotVVM.BusinessPack.Export.Excel" Version="4.1.0-preview18-final" />
+    <PackageReference Include="DotVVM.HotReload.AspNetCore" Version="4.1.0-preview19-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
 
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
+    <ProjectReference Include="..\BPSamples.Chat\BPSamples.Chat.csproj" />
+    <ProjectReference Include="..\BPSamples.CustomProperties\BPSamples.CustomProperties.csproj" />
   </ItemGroup>
 </Project>

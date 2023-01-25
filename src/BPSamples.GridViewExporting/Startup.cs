@@ -28,7 +28,7 @@ namespace BPSamples.GridViewExporting
             services.AddAuthorization();
             services.AddWebEncoders();
             services.AddAuthentication();
-
+            services.AddDbContext<AppDbContext>();
             services.AddDotVVM<DotvvmStartup>();
 
             services.AddSingleton<FakeDataService>();

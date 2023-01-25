@@ -13,24 +13,52 @@ namespace BPSamples.GridViewExporting.ViewModels
     public class DefaultViewModel : MasterPageViewModel
     {
         private readonly FakeDataService fakeDataService;
-
         public BusinessPackDataSet<TimeTrackingEntry> Entries { get; set; } = new()
         {
             SortingOptions =
             {
-                SortDescending = true,
-                SortExpression = nameof(TimeTrackingEntry.BeginDate)
+                SortDescending = false,
+                SortExpression = nameof(TimeTrackingEntry.Id)
             },
             PagingOptions =
             {
                 PageSize = 15
+            },
+            RowEditOptions = 
+            { 
+                PrimaryKeyPropertyName = nameof(TimeTrackingEntry.Id), EditRowId = -1 
             }
         };
 
-
-        public DefaultViewModel(FakeDataService fakeDataService)
+        public void EditEntry(TimeTrackingEntry entry)
         {
-            this.fakeDataService = fakeDataService;
+            Entries.RowEditOptions.EditRowId = entry.Id;
+        }
+
+        public void UpdateEntry(TimeTrackingEntry entry)
+        {
+            var context = new AppDbContext();
+            context.Update(entry);
+            context.SaveChanges();
+            CancelEdit();
+        }
+
+        private void CancelEdit()
+        {
+            Entries.RowEditOptions.EditRowId = -1;
+        }
+
+        public void CancelEditEntry()
+        {
+            CancelEdit();
+            Entries.RequestRefresh();
+        }
+
+
+
+        public DefaultViewModel()
+        {
+            this.fakeDataService = new FakeDataService();
         }
 
         public override Task PreRender()

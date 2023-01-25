@@ -7,47 +7,48 @@ namespace BPSamples.GridViewExporting.Data;
 public class FakeDataService
 {
 
-
-
-
-    private static TimeTrackingEntry[] allEntries = GenerateData();
-
-    private static TimeTrackingEntry[] GenerateData()
+    private readonly AppDbContext _context;
+    public FakeDataService()
     {
+        _context = new AppDbContext();
+
+        if(_context.TimeTrackingEntries.Count() == 0)
+        {
+            GenerateData();
+        }
+    }
+
+
+    private void GenerateData()
+    {
+        
         var faker = new Faker();
         var names = Enumerable.Range(0, 20).Select(n => faker.Name.FullName()).ToArray();
         
-        return Enumerable.Range(0, faker.Random.Int(100, 150))
+        var entries =  Enumerable.Range(1, 1000)
             .Select(x =>
             {
                 var beginDate = faker.Date.Recent(30);
 
                 return new TimeTrackingEntry()
                 {
+                    Id = x,
                     BeginDate = beginDate,
                     EndDate = beginDate.AddMinutes(faker.Random.Int(5, 8 * 60)),
                     Description = faker.Lorem.Sentence(),
                     EmployeeName = faker.PickRandom(names)
                 };
             })
-            .ToArray();
+            .ToList();
+        foreach (var entry in entries)
+        {
+            _context.TimeTrackingEntries.Add(entry);
+        }
+        _context.SaveChanges();
     }
 
     public IQueryable<TimeTrackingEntry> GetQueryable()
     {
-        return allEntries.AsQueryable();
+        return _context.TimeTrackingEntries.AsQueryable();
     }
-}
-
-public class TimeTrackingEntry
-{
-    public DateTime BeginDate { get; set; }
-    
-    public DateTime EndDate { get; set; }
-    
-    public double Hours => (EndDate - BeginDate).TotalHours;
-
-    public string EmployeeName { get; set; }
-
-    public string Description { get; set; }
 }
