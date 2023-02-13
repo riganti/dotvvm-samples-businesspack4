@@ -16,10 +16,10 @@
     <None Remove="dotvvm_serialized_config.json.tmp" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DotVVM.AspNetCore" Version="4.1.0-preview18-416933" />
-    <PackageReference Include="DotVVM.BusinessPack" Version="4.1.0-preview17-401043-custom-primitive-types" />
-    <PackageReference Include="DotVVM.BusinessPack.Messaging" Version="4.1.0-preview17-401043-custom-primitive-types" />
-    <PackageReference Include="DotVVM.HotReload.AspNetCore" Version="4.1.0-preview18-416933" />
+    <PackageReference Include="DotVVM.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="DotVVM.BusinessPack" Version="4.1.0" />
+    <PackageReference Include="DotVVM.BusinessPack.Messaging" Version="4.1.0" />
+    <PackageReference Include="DotVVM.HotReload.AspNetCore" Version="4.1.0" />
 
   </ItemGroup>
   <ItemGroup>
