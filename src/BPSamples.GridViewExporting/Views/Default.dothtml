@@ -5,11 +5,9 @@
     <h2>Time tracking report</h2>
 
     <div class="toolbar">
-        <bp:Button Text="Export" Click="{command: Export()}" />
+        <bp:Button Text="Export to Excel" Click="{command: ExportExcel()}" />
+        <bp:Button Text="Export to CSV" Click="{command: ExportCsv()}" />
     </div>
-
-
-
 
     <bp:GridView DataSource="{value: Entries}" ID="grid" InlineEditMode="SingleRow">
         <Columns>

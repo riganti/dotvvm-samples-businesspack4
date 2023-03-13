@@ -4,7 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using BPSamples.GridViewExporting.Data;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Vml.Office;
 using DotVVM.BusinessPack.Controls;
+using DotVVM.BusinessPack.Export;
+using DotVVM.BusinessPack.Export.ColumnValueProvider;
+using DotVVM.BusinessPack.Export.Csv;
 using DotVVM.BusinessPack.Export.Excel;
 using DotVVM.Framework.ViewModel;
 
@@ -13,6 +17,7 @@ namespace BPSamples.GridViewExporting.ViewModels
     public class DefaultViewModel : MasterPageViewModel
     {
         private readonly FakeDataService fakeDataService;
+
         public BusinessPackDataSet<TimeTrackingEntry> Entries { get; set; } = new()
         {
             SortingOptions =
@@ -24,9 +29,9 @@ namespace BPSamples.GridViewExporting.ViewModels
             {
                 PageSize = 15
             },
-            RowEditOptions = 
-            { 
-                PrimaryKeyPropertyName = nameof(TimeTrackingEntry.Id), EditRowId = -1 
+            RowEditOptions =
+            {
+                PrimaryKeyPropertyName = nameof(TimeTrackingEntry.Id), EditRowId = -1
             }
         };
 
@@ -71,11 +76,11 @@ namespace BPSamples.GridViewExporting.ViewModels
             return base.PreRender();
         }
 
-        public async Task Export()
+        public async Task ExportExcel()
         {
             // get grid view
             var gridView = (GridView)Context.View.FindControlByClientId("grid");
-            
+
             // preare data set
             var dataSet = new BusinessPackDataSet<TimeTrackingEntry>();
             dataSet.SortingOptions = Entries.SortingOptions;
@@ -121,6 +126,37 @@ namespace BPSamples.GridViewExporting.ViewModels
             var export = new GridViewExportExcel<TimeTrackingEntry>(settings);
             using var file = export.Export(gridView, dataSet);
             await Context.ReturnFileAsync(file, "timetracking.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        }
+
+        public async Task ExportCsv()
+        {
+            // get grid view
+            var gridView = (GridView)Context.View.FindControlByClientId("grid");
+
+            // preare data set
+            var dataSet = new BusinessPackDataSet<TimeTrackingEntry>();
+            dataSet.SortingOptions = Entries.SortingOptions;
+            dataSet.LoadFromQueryable(fakeDataService.GetQueryable());
+
+            // configure export
+            var settings = new GridViewExportCsvSettings<TimeTrackingEntry>()
+            {
+                CreateHeader = true,
+                QuotedValue = QuotedValue.Always,
+                Separator = ","
+            };
+            settings.ColumnValueProviderHandlers.Register(new AnonymousColumnValueProvider<TimeTrackingEntry>(
+                canGetColumnValueFunc: (control, column, entry) => column.ColumnName == "Hours",
+                getColumnValueFunc: (control, column, entry) => column switch
+                {
+                    { ColumnName: "Hours" } => new ColumnValue() { Text = Math.Round(entry.Hours, 1).ToString("n1") },
+                    _ => throw new NotSupportedException()
+                }
+            ));
+
+            var export = new GridViewExportCsv<TimeTrackingEntry>(settings);
+            using var file = export.Export(gridView, dataSet);
+            await Context.ReturnFileAsync(file, "timetracking.csv", "text/csv");
         }
     }
 }
